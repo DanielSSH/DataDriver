@@ -54,6 +54,7 @@ def query_string():
 def listar_conductores():
     data={}
     try:
+        
         cursor= conexion.connection.cursor()
         sql="SELECT Cedula, Nombres, Apellidos, Licencia FROM dbdatadriver.conductores ORDER BY nombre ASC"
         cursor.execute(sql)
