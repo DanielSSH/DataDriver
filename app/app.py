@@ -4,10 +4,10 @@ from flask_mysqldb import MySQL
 app = Flask(__name__)
 
 # Configuración de MySQL
-app.config['MYSQL_HOST'] = 'Local instance MySQL80'
+app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'Zonapets12345*'
-app.config['MYSQL_DB'] = 'datadriverdb'
+app.config['MYSQL_DB'] = 'dbdatadriver'
 app.config['MYSQL_PORT'] = 3306
 
 mysql = MySQL(app)
@@ -46,12 +46,11 @@ def listar_conductores():
     data = {}
     try:
         cursor = mysql.connection.cursor()
-        sql = "SELECT Cedula, Nombres, Apellidos, Licencia FROM conductores"
+        sql = "SELECT cedula, nombres, apellidos, licencia FROM conductores"
         cursor.execute(sql)
         conductores = cursor.fetchall()
         columns = [desc[0] for desc in cursor.description]
         data['conductores'] = [dict(zip(columns, row)) for row in conductores]
-        data['conductores'] = conductores
         data['mensaje'] = 'Éxito'
         cursor.close()
     except Exception as ex:
