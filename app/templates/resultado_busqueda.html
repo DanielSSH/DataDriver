@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Conductores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Consulta de Conductores</h1>
+    <form method="POST">
+        <label for="cedula">Cédula:</label>
+        <input type="text" id="cedula" name="cedula" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% if conductor %}
+        <h2>Información del Conductor</h2>
+        <p><strong>Nombre:</strong> {{ conductor['nombre'] }}</p>
+        <p><strong>Cédula:</strong> {{ conductor['cedula'] }}</p>
+        <p><strong>Licencia:</strong> {{ conductor['licencia'] }}</p>
+    {% elif conductor is not none %}
+        <p>No se encontró ningún conductor con esa cédula.</p>
+    {% endif %}
+</body>
+</html>
+
+    
+
